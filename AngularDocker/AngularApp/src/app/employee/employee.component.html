@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s5">
+            <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="username" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.username" placeholder="Enter your user name" required>
+                  <label>Username :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="fullname" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.fullname" placeholder="Enter your user fullname" required>
+                  <label>Fullname :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="birthdate" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.birthdate" placeholder="Enter your birthdate">
+                  <label>Birthdate :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="email" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.email" placeholder="Eg: myemail@gmail.com">
+                  <label>Email :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="password" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.password" placeholder="enter the password">
+                  <label>Password:</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn btn-custom right" type="button" (click)="resetForm(employeeForm)">Reset</button>
+                  <button class="btn btn-custom right" type="submit" [disabled]="!employeeForm.valid">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s7">
+              <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Fullname</th>
+                      <th>Email</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let emp of employeeService.employees">
+                    <td>{{emp.username}}</td>
+                    <td>{{emp.fullname}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>
+                        <a class="action-btn" (click)="onEdit(emp)">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <a class="action-btn" (click)="onDelete(emp._id,employeeForm)">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
